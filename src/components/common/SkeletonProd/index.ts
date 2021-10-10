@@ -1,0 +1,1 @@
+export { SkeletonProd } from './SkeletonProd'

@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Guitarras",
+    "link": "guitarras"
+  },
+  {
+    "id": 2,
+    "name": "Bajos",
+    "link": "bajos"
+  },
+  {
+    "id": 3,
+    "name": "Percusion",
+    "link": "percusion"
+  },
+  {
+    "id": 4,
+    "name": "Teclados",
+    "link": "teclados"
+  }
+]
