@@ -4,7 +4,7 @@ export { ButtonStyled as Button } from './../components/common/ButtonStyled'
 
 export const theme = extendTheme({
   colors: {
-    primary: '#000000',
+    primary: '#06f',
     secondary: '#f5254f'
   },
   components: {

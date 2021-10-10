@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Heading, Image, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react'
 
 import { useData } from '../../hooks/useData'
 import AddButton from '../common/Buttons/Buttons'
@@ -57,23 +57,27 @@ export const Item = ({ item }: { item: ProductItem }) => {
           <Heading size="sm">{item.name}</Heading>
         </Box>
         <Box display="flex" height="80px">
-          <Text>{desc(item.description)}</Text>
+          <Text fontSize="15px">{desc(item.description)}</Text>
         </Box>
         <Text> stock {item.stock}</Text>
       </Link>
-      {!isInCart && (
-        <ItemCount
-          count={count}
-          decrement={decrement}
-          increment={increment}
-          maxStock={item.stock}
-        />
-      )}
-      {isInCart && <div>añadir algo aqui</div>}
-      {!item.stock && <Text>No hay Stock</Text>}
-      {item.stock && (
-        <AddButton handleClick={handleAddToCart} isInCart={isInCart} />
-      )}
+      <Box mt={5}>
+        <Flex justifyContent="space-between" gap="10px">
+          {!isInCart && (
+            <ItemCount
+              count={count}
+              decrement={decrement}
+              increment={increment}
+              maxStock={item.stock}
+            />
+          )}
+          {isInCart && <div>añadir algo aqui</div>}
+          {!item.stock && <Text>No hay Stock</Text>}
+          {item.stock && (
+            <AddButton handleClick={handleAddToCart} isInCart={isInCart} />
+          )}
+        </Flex>
+      </Box>
     </Box>
   )
 }
