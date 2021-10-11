@@ -69,9 +69,7 @@ export const Cart: FC<Props> = () => {
   }
 
   if (!state.cart.products.length) {
-    return (
-      <EmptyCart />
-    )
+    return <EmptyCart />
   }
 
   return (
@@ -79,9 +77,9 @@ export const Cart: FC<Props> = () => {
       <Flex flexDirection="row" marginTop="20px">
         <Box flex="2">
           <SimpleGrid columns={4} padding="20px 0">
-            <Text>Producto</Text>
-            <Text>Precio</Text>
-            <Text>Cantidad</Text>
+            <Text>Product</Text>
+            <Text textAlign="center">Price</Text>
+            <Text textAlign="center">Quantity</Text>
             <Text>Total</Text>
           </SimpleGrid>
           <Divider mb="20px" spacing={1} />
@@ -96,9 +94,9 @@ export const Cart: FC<Props> = () => {
             ))}
           </Box>
           <Text>
-            Total price:
-            <span style={{ fontSize: 15, fontWeight: 'bold' }}>
-              {`$${totalPriceEncode}`}
+            Order Total: 
+             <span style={{ fontSize: 15, fontWeight: 'bold' }}>
+              {` $${totalPriceEncode}`}
             </span>
           </Text>
         </Box>

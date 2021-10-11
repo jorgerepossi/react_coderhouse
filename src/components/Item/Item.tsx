@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Flex, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react'
 
 import { useData } from '../../hooks/useData'
 import AddButton from '../common/Buttons/Buttons'
@@ -26,10 +26,6 @@ export const Item = ({ item }: { item: ProductItem }) => {
     addToCart(itemToAddInCart)
   }
 
-  const desc = (params: string | undefined) => {
-    return params && params.substring(0, 60)
-  }
-
   const handleIsAlreadyInCart = () => {
     const { products } = state.cart
 
@@ -43,12 +39,7 @@ export const Item = ({ item }: { item: ProductItem }) => {
   }, [state.cart])
 
   return (
-    <Box
-      boxShadow="xs"
-      flex="1"
-      margin="20px 0px"
-      padding={5}
-      rounded="md">
+    <Box boxShadow="xs" flex="1" margin="20px 0px" padding={5} rounded="md">
       <Link to={`/item/${item.id}`}>
         <Box display="flex" justifyContent="center">
           <Image
@@ -62,15 +53,12 @@ export const Item = ({ item }: { item: ProductItem }) => {
         <Box display="flex" height="50px" mt={5}>
           <Heading size="xs">{item.name}</Heading>
         </Box>
-        {/* <Box display="flex" height="80px">
-          <Text fontSize="15px">{desc(item.description)}</Text>
-        </Box> */}
         <Text color="primary" fontWeight="bold">
           {`$${handleConvertPrice(item.price)}`}
         </Text>
       </Link>
       <Box mt={5}>
-        <SimpleGrid columns={2} gap={2} >
+        <SimpleGrid columns={2} gap={2}>
           {!isInCart && (
             <ItemCount
               count={count}

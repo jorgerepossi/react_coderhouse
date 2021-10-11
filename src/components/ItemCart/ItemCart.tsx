@@ -1,5 +1,5 @@
 import { IoClose } from 'react-icons/io5'
-import { Flex, Box, SimpleGrid, Text } from '@chakra-ui/react'
+import { Flex, Box, SimpleGrid, Text, Image } from '@chakra-ui/react'
 
 import useCountState from '../../hooks/useCountState'
 import { useData } from '../../hooks/useData'
@@ -39,19 +39,22 @@ const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
     <Box alignItems="center" marginBottom="40px">
       <SimpleGrid alignItems="center" columns={4} textAlign="center">
         <Box>
-          <Text fontWeight="bold" textTransform="capitalize">
+          <Flex alignItems="center"> 
+          <Image height="80px" src={item.image} width="80px" />
+          <Text fontSize="12" fontWeight="bold" textTransform="capitalize">
             {item.name}
           </Text>
+          </Flex>
         </Box>
         <Box>
           <Text color="primary" fontSize="14px" textAlign="center">
-            {' '}
-            {`$${handleConvertPrice(item.price)}`}
+         
+            {` $${handleConvertPrice(item.price)}`}
           </Text>
         </Box>
         <Box alignItems="center" display="flex" flexDirection="column">
           <Text color="text" fontSize="14px" marginBottom="10px">
-            {' '}
+             
             Stock: {item.stock}
           </Text>
           <ItemCount

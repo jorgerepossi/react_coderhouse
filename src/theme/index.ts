@@ -8,7 +8,7 @@ export const theme = extendTheme({
     grey: {
       10: 'hsl(240, 7%, 97%)',
       20: 'hsl(240, 7%, 87%)',
-      30: 'hsl(240, 7%, 77%)',
+      30: 'hsl(240, 7%, 77%)'
     },
     primary: '#06f',
     secondary: '#f7f7f8',

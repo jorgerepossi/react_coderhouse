@@ -27,16 +27,14 @@ const services = [
 
 export const ShopServices: FC = (): JSX.Element => {
   return (
-   
-      <Stack bg="base"  width="100%">
-<SimpleGrid
-       
+    <Stack bg="base" width="100%">
+      <SimpleGrid
         borderRadius={10}
-              columns={[1, 1, 3]}
-              margin="0px auto"
-        maxWidth='container.xl'
-          padding="50px 0"
-          spacing={5}
+        columns={[1, 1, 3]}
+        margin="0px auto"
+        maxWidth="container.xl"
+        padding="50px 0"
+        spacing={5}
       >
         {services.map(({ title, subtitle, content, icon }) => (
           <Box
@@ -72,7 +70,6 @@ export const ShopServices: FC = (): JSX.Element => {
           </Box>
         ))}
       </SimpleGrid>
-      </Stack>
-   
+    </Stack>
   )
 }

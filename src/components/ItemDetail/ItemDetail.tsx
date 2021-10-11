@@ -87,7 +87,9 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
             <Text color="primary" fontSize="xl" mb={5}>
               <b>{`$${handleConvertPrice(item.price)}`} </b>
             </Text>
-            <Text color="text" fontSize="md">{item.description}</Text>
+            <Text color="text" fontSize="md">
+              {item.description}
+            </Text>
             <Text fontSize="sm" mb={5} mt={5}>
               Stock: <b>{item.stock}</b>
             </Text>
@@ -117,7 +119,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
             <Divider orientation="horizontal" />
             <Box mb={5} mt={5}>
               <SocialMedia />
-              </Box>
+            </Box>
           </Box>
         </Stack>
       </Stack>

@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-
+import {
+  Box,
+  Container,
+  Divider,
+  Flex,
+  SimpleGrid,
+  Spinner,
+  Text
+} from '@chakra-ui/react'
 import { getFirestore } from '../../api/config'
 import useBooleanState from '../../hooks/useBooleanState'
 import { NewOrderCart } from '../../types/types'
@@ -48,9 +56,22 @@ const Order = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <h1>is Loading....</h1>
-      </div>
+      <Container maxWidth="container.xl">
+      <Flex
+        alignContent="center"
+        alignItems="center"
+        h="80vh"
+        justifyContent="center"
+      >
+        <Spinner
+          color="primary"
+          emptyColor="gray.200"
+          size="xl"
+          speed="0.65s"
+          thickness="4px"
+        />
+      </Flex>
+    </Container>
     )
   }
 
@@ -63,15 +84,15 @@ const Order = () => {
   }
 
   return (
-    <div>
+    <Container maxWidth="container.xl">
       <h1>Order {id}</h1>
 
-      <div>
+      <Box>
         <h2>Buyer</h2>
-        <p>userName: {orderState.buyer.userName}</p>
-        <p>email: {orderState.buyer.email}</p>
-        <p>tel: {orderState.buyer.tel}</p>
-      </div>
+        <Text>userName: {orderState.buyer.userName}</Text>
+        <Text>email: {orderState.buyer.email}</Text>
+        <Text>tel: {orderState.buyer.tel}</Text>
+      </Box>
 
       <div>
         Total : {orderState.total}
@@ -84,7 +105,7 @@ const Order = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </Container>
   )
 }
 

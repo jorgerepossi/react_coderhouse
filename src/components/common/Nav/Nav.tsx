@@ -1,15 +1,17 @@
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Flex, Stack, Box } from '@chakra-ui/react'
+import { Flex, Stack, Box, ResponsiveValue } from '@chakra-ui/react'
 
 import { MenuLink } from '../../../types/interfaces'
 
 import Menu from './../../../api/MenuLinks.json'
-
-export const Nav: FC = (): JSX.Element => {
+interface Props {
+  direction?: {}
+}
+export const Nav: FC<Props> = ({ direction }): JSX.Element => {
   return (
     <Stack>
-      <Flex>
+      <Flex flexDirection={direction}>
         {Menu.map(({ id, link, name }: MenuLink) => {
           return (
             <Box key={id}>
