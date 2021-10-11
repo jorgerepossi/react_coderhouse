@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react'
 
 import { useData } from '../../hooks/useData'
 import AddButton from '../common/Buttons/Buttons'
@@ -8,6 +8,7 @@ import { ProductItem } from '../../types/types'
 import { ItemCount } from '../ItemCount'
 import useCountState from '../../hooks/useCountState'
 import { AddToCartProps } from '../../context/ProductContext'
+import { handleConvertPrice } from '../ItemCart/ItemCart'
 
 export const Item = ({ item }: { item: ProductItem }) => {
   const { addToCart, state } = useData()
@@ -42,7 +43,12 @@ export const Item = ({ item }: { item: ProductItem }) => {
   }, [state.cart])
 
   return (
-    <Box flex="1" margin="20px 0px">
+    <Box
+      boxShadow="xs"
+      flex="1"
+      margin="20px 0px"
+      padding={5}
+      rounded="md">
       <Link to={`/item/${item.id}`}>
         <Box display="flex" justifyContent="center">
           <Image
@@ -53,16 +59,18 @@ export const Item = ({ item }: { item: ProductItem }) => {
             src={item.image}
           />
         </Box>
-        <Box alignItems="center" display="flex" height="50px">
-          <Heading size="sm">{item.name}</Heading>
+        <Box display="flex" height="50px" mt={5}>
+          <Heading size="xs">{item.name}</Heading>
         </Box>
-        <Box display="flex" height="80px">
+        {/* <Box display="flex" height="80px">
           <Text fontSize="15px">{desc(item.description)}</Text>
-        </Box>
-        <Text> stock {item.stock}</Text>
+        </Box> */}
+        <Text color="primary" fontWeight="bold">
+          {`$${handleConvertPrice(item.price)}`}
+        </Text>
       </Link>
       <Box mt={5}>
-        <Flex justifyContent="space-between" gap="10px">
+        <SimpleGrid columns={2} gap={2} >
           {!isInCart && (
             <ItemCount
               count={count}
@@ -71,12 +79,12 @@ export const Item = ({ item }: { item: ProductItem }) => {
               maxStock={item.stock}
             />
           )}
-          {isInCart && <div>añadir algo aqui</div>}
-          {!item.stock && <Text>No hay Stock</Text>}
+          {isInCart && <Text>Thank´s</Text>}
+          {!item.stock && <Text>No more Stock</Text>}
           {item.stock && (
             <AddButton handleClick={handleAddToCart} isInCart={isInCart} />
           )}
-        </Flex>
+        </SimpleGrid>
       </Box>
     </Box>
   )

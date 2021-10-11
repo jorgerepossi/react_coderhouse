@@ -16,6 +16,8 @@ import useCountState from '../../hooks/useCountState'
 import { useData } from '../../hooks/useData'
 import { AddToCartProps } from '../../context/ProductContext'
 import { ProductItem } from '../../types/types'
+import { SocialMedia, TabsContent } from '../common'
+import { handleConvertPrice } from '../ItemCart/ItemCart'
 
 export const ItemDetail = ({ item }: { item: ProductItem }) => {
   const { count, decrement, increment } = useCountState({
@@ -53,7 +55,9 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
           <Breadcrumbs item={item.category} />
         </Box>
       </Stack>
+
       <Divider orientation="horizontal" />
+
       <Stack as="main" direction={['column', 'column', 'row']} spacing={6}>
         <Stack direction={['column', 'column', 'row']} width="100%">
           <Box maxWidth="container.sm" width="100%">
@@ -66,7 +70,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
                 src={item.image}
               />
             </Box>
-            <Flex>
+            <Flex marginBlock={10}>
               {item.images
                 ? item.images?.map((e) => (
                     <Box key={e}>
@@ -80,10 +84,10 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
             <Heading as="h3" mb={5} mt={5} size="lg">
               {item.name}
             </Heading>
-            <Text fontSize="xl" mb={5}>
-              <b> {item.price} </b>
+            <Text color="primary" fontSize="xl" mb={5}>
+              <b>{`$${handleConvertPrice(item.price)}`} </b>
             </Text>
-            <Text fontSize="md">{item.description}</Text>
+            <Text color="text" fontSize="md">{item.description}</Text>
             <Text fontSize="sm" mb={5} mt={5}>
               Stock: <b>{item.stock}</b>
             </Text>
@@ -110,10 +114,17 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
                 )}
               </Flex>
             </Box>
+            <Divider orientation="horizontal" />
+            <Box mb={5} mt={5}>
+              <SocialMedia />
+              </Box>
           </Box>
         </Stack>
       </Stack>
-      <Divider orientation="horizontal" />
+
+      <Stack as="section" mt={5}>
+        <TabsContent />
+      </Stack>
     </>
   )
 }

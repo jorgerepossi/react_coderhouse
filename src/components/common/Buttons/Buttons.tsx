@@ -23,7 +23,7 @@ export const AddButton = ({ handleClick, isInCart }: ButtonProps) => {
       disabled={isInCart}
       isLoading={isLoading}
       leftIcon={<BiShoppingBag />}
-      loadingText="Adding to cart..."
+      loadingText="ADDING..."
       variant="primary"
       onClick={handleButtonClick}
     >
@@ -31,4 +31,4 @@ export const AddButton = ({ handleClick, isInCart }: ButtonProps) => {
     </Button>
   )
 }
-export default AddButton;
+export default AddButton

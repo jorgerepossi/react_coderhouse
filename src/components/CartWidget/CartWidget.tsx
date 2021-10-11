@@ -20,7 +20,7 @@ export const CartWidget: FC = () => {
           <Box
             alignContent="center"
             alignItems="center"
-            backgroundColor="red"
+            bg="primary"
             borderRadius="50px"
             color="white"
             display="flex"
@@ -32,7 +32,6 @@ export const CartWidget: FC = () => {
             top="-10px"
             width="20px"
           >
-            {' '}
             {state.cart.products.length}
           </Box>
 

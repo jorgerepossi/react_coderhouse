@@ -12,6 +12,10 @@ interface ItemCartProps {
   handleChangePrice: (price: number, type: 'add' | 'subtract') => void
 }
 
+export const handleConvertPrice = (price: number) => {
+  return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1.')
+}
+
 const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
   const { count, decrement, increment } = useCountState({
     maxStock: item.stock,
@@ -31,21 +35,25 @@ const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
     handleChangePrice(item.price, 'add')
   }
 
-  const handleConvertPrice = (price: number) => {
-    return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1.')
-  }
-
   return (
-    <div>
-      <SimpleGrid columns={4}>
+    <Box alignItems="center" marginBottom="40px">
+      <SimpleGrid alignItems="center" columns={4} textAlign="center">
         <Box>
-          <h1>{item.name}</h1>
+          <Text fontWeight="bold" textTransform="capitalize">
+            {item.name}
+          </Text>
         </Box>
         <Box>
-          <Text>${handleConvertPrice(item.price)}</Text>
+          <Text color="primary" fontSize="14px" textAlign="center">
+            {' '}
+            {`$${handleConvertPrice(item.price)}`}
+          </Text>
         </Box>
-        <Box>
-          <Text> Stock: {item.stock}</Text>
+        <Box alignItems="center" display="flex" flexDirection="column">
+          <Text color="text" fontSize="14px" marginBottom="10px">
+            {' '}
+            Stock: {item.stock}
+          </Text>
           <ItemCount
             count={count}
             decrement={handleDecrementPrice}
@@ -54,13 +62,15 @@ const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
           />
         </Box>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Text>$ {handleConvertPrice(item.price * count)}</Text>
+          <Text fontWeight="bold">
+            $ {handleConvertPrice(item.price * count)}
+          </Text>
           <button onClick={() => removeItem(item.id)}>
             <IoClose />
           </button>
         </div>
       </SimpleGrid>
-    </div>
+    </Box>
   )
 }
 

@@ -42,7 +42,7 @@ export const ItemListContainer: FC = () => {
   }, [categorie])
 
   return (
-    <Container maxWidth="container.xl">
+    <Container marginBottom={20} maxWidth="container.xl">
       <Breadcrumbs item={categorie} />
       {product.length ? (
         <ItemList dataMap={product} />

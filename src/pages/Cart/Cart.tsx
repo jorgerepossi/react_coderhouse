@@ -1,5 +1,12 @@
 import { FC } from 'react'
-import { Box, Container, Divider, SimpleGrid, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Container,
+  Divider,
+  Flex,
+  SimpleGrid,
+  Text
+} from '@chakra-ui/react'
 import { useHistory } from 'react-router-dom'
 
 import { useData } from '../../hooks/useData'
@@ -7,6 +14,7 @@ import ItemCart from '../../components/ItemCart/ItemCart'
 import CartForm from '../../components/Form/CartForm'
 import { FormData } from '../../types/types'
 import { getFirestore } from '../../api/config'
+import { EmptyCart } from '../../components'
 
 interface Props {}
 
@@ -62,31 +70,42 @@ export const Cart: FC<Props> = () => {
 
   if (!state.cart.products.length) {
     return (
-      <div>
-        <h1>Cart is empty</h1>
-      </div>
+      <EmptyCart />
     )
   }
 
   return (
     <Container maxWidth="container.xl">
-      <SimpleGrid columns={4} padding="20px 0">
-        <Text>Producto</Text>
-        <Text>Precio</Text>
-        <Text>Cantidad</Text>
-        <Text>Total</Text>
-      </SimpleGrid>
-      <Divider mb="20px" spacing={1} />
-      {state.cart.products.map(({ item, quantity }) => (
-        <ItemCart
-          key={item.id}
-          handleChangePrice={handleChangePrice}
-          item={item}
-          quantity={quantity}
-        />
-      ))}
-      <h2>Total price: ${totalPriceEncode}</h2>
-      <CartForm handleSubmitForm={handleSubmitForm} />
+      <Flex flexDirection="row" marginTop="20px">
+        <Box flex="2">
+          <SimpleGrid columns={4} padding="20px 0">
+            <Text>Producto</Text>
+            <Text>Precio</Text>
+            <Text>Cantidad</Text>
+            <Text>Total</Text>
+          </SimpleGrid>
+          <Divider mb="20px" spacing={1} />
+          <Box>
+            {state.cart.products.map(({ item, quantity }) => (
+              <ItemCart
+                key={item.id}
+                handleChangePrice={handleChangePrice}
+                item={item}
+                quantity={quantity}
+              />
+            ))}
+          </Box>
+          <Text>
+            Total price:
+            <span style={{ fontSize: 15, fontWeight: 'bold' }}>
+              {`$${totalPriceEncode}`}
+            </span>
+          </Text>
+        </Box>
+        <Box flex="1">
+          <CartForm handleSubmitForm={handleSubmitForm} />
+        </Box>
+      </Flex>
     </Container>
   )
 }

@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { MdPayment, MdSupportAgent, MdReplay} from 'react-icons/md'
- import {  SimpleGrid, Box, Text } from "@chakra-ui/react"
+import { MdPayment, MdSupportAgent, MdReplay } from 'react-icons/md'
+import { SimpleGrid, Box, Text, Container, Stack } from '@chakra-ui/react'
 const services = [
   {
     icon: <MdSupportAgent />,
@@ -25,32 +25,54 @@ const services = [
   }
 ]
 
-export const ShopServices: FC = (): JSX.Element=> {
-    return (
-        <SimpleGrid columns={3} padding="50px 0" spacing={5}>
-            {services.map(({ title, subtitle, content, icon }) => (
-                <Box key={title}
-                    alignItems="center"
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="center"
-                    padding="20px"
-                >
-                    <Box
-                        fontSize="50"
-                        borderRadius="50px"
-                        borderColor="#dddddd"
-                        borderWidth="1px"
-                        padding="20px"> {icon} </Box>
-                    <Text fontSize="md">{title}</Text>
-                    <Text fontSize="xs">{subtitle}</Text>
-                    <Text fontSize="sm"> {content}</Text>
-                    
-                   
-                    </Box>
-            ))}
-            
-        
-    </SimpleGrid>
-    )
+export const ShopServices: FC = (): JSX.Element => {
+  return (
+   
+      <Stack bg="base"  width="100%">
+<SimpleGrid
+       
+        borderRadius={10}
+              columns={[1, 1, 3]}
+              margin="0px auto"
+        maxWidth='container.xl'
+          padding="50px 0"
+          spacing={5}
+      >
+        {services.map(({ title, subtitle, content, icon }) => (
+          <Box
+            key={title}
+            alignItems="center"
+            borderRadius="20px"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            padding="20px"
+          >
+            <Box
+              bg="#ffffff"
+              borderColor="#f9f9f9"
+              borderRadius="50px"
+              borderWidth="1px"
+              color="primary"
+              fontSize="50"
+              marginBottom="20px"
+              padding="20px"
+            >
+              {icon}
+            </Box>
+            <Text fontSize="md" fontWeight="bold" mb={2}>
+              {title}
+            </Text>
+            <Text fontSize="xs" mb={2}>
+              {subtitle}
+            </Text>
+            <Text color="text" fontSize="sm" textAlign="center">
+              {content}
+            </Text>
+          </Box>
+        ))}
+      </SimpleGrid>
+      </Stack>
+   
+  )
 }
