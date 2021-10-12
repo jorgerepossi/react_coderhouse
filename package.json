@@ -9,7 +9,8 @@
     "format": "prettier --write src",
     "type-check": "tsc --pretty --noEmit",
     "prepare": "husky install",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "pre-commit": "lint-staged"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.8",
