@@ -57,21 +57,21 @@ const Order = () => {
   if (isLoading) {
     return (
       <Container maxWidth="container.xl">
-      <Flex
-        alignContent="center"
-        alignItems="center"
-        h="80vh"
-        justifyContent="center"
-      >
-        <Spinner
-          color="primary"
-          emptyColor="gray.200"
-          size="xl"
-          speed="0.65s"
-          thickness="4px"
-        />
-      </Flex>
-    </Container>
+        <Flex
+          alignContent="center"
+          alignItems="center"
+          h="80vh"
+          justifyContent="center"
+        >
+          <Spinner
+            color="primary"
+            emptyColor="gray.200"
+            size="xl"
+            speed="0.65s"
+            thickness="4px"
+          />
+        </Flex>
+      </Container>
     )
   }
 

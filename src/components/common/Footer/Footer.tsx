@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Container, Divider, Link, Stack, Text  } from '@chakra-ui/react'
+import { Container, Divider, Link, Stack, Text } from '@chakra-ui/react'
 import { ImHeart } from 'react-icons/im'
 
 import { Nav } from '../Nav/Nav'

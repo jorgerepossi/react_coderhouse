@@ -130,9 +130,8 @@ export const productReducer = (
       const productIdToUpdate = action.payload.id
       const productQuantityToUpdate = action.payload.quantity
 
-
-      const newArrProducts = state.cart.products.map(el => {
-        if(el.item.id === productIdToUpdate) {
+      const newArrProducts = state.cart.products.map((el) => {
+        if (el.item.id === productIdToUpdate) {
           return {
             ...el,
             quantity: productQuantityToUpdate

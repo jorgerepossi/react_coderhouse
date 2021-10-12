@@ -22,7 +22,12 @@ export const Cart: FC<Props> = () => {
   const { state, removeCart, handleUpdatePrice } = useData()
   const history = useHistory()
 
-  const handleChangePrice = (price: number, type: 'add' | 'subtract', id: string, quantity: number) => {
+  const handleChangePrice = (
+    price: number,
+    type: 'add' | 'subtract',
+    id: string,
+    quantity: number
+  ) => {
     handleUpdatePrice(type, price, id, quantity)
   }
 
@@ -94,8 +99,8 @@ export const Cart: FC<Props> = () => {
             ))}
           </Box>
           <Text>
-            Order Total: 
-             <span style={{ fontSize: 15, fontWeight: 'bold' }}>
+            Order Total:
+            <span style={{ fontSize: 15, fontWeight: 'bold' }}>
               {` $${totalPriceEncode}`}
             </span>
           </Text>
