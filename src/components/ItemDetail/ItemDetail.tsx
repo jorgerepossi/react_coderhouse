@@ -10,6 +10,7 @@ import {
   Link
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { BiShoppingBag } from 'react-icons/bi'
 
 import { ItemCount } from '../ItemCount/ItemCount'
 import { Breadcrumbs } from '../Breadcrumb/Breadcrumb'
@@ -20,7 +21,6 @@ import { AddToCartProps } from '../../context/ProductContext'
 import { ProductItem } from '../../types/types'
 import { SocialMedia, TabsContent } from '../common'
 import { handleConvertPrice } from '../ItemCart/ItemCart'
-import { BiShoppingBag } from 'react-icons/bi'
 
 export const ItemDetail = ({ item }: { item: ProductItem }) => {
   const { count, decrement, increment } = useCountState({
@@ -76,7 +76,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
             <Flex marginBlock={10}>
               {item.images
                 ? item.images?.map((e) => (
-                    <Box key={e} >
+                    <Box key={e}>
                       <Image alt="" height="100" src={e} width="100%" />
                     </Box>
                   ))
@@ -102,7 +102,16 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
                 {!item.stock && <Text>No stock available</Text>}
                 {item.stock && (
                   <>
-                    {isInCart && <Button fontSize="11px" leftIcon={<BiShoppingBag />} variant="outline" > <Link to='/cart'> GO TO CART  </Link></Button>}
+                    {isInCart && (
+                      <Button
+                        fontSize="11px"
+                        leftIcon={<BiShoppingBag />}
+                        variant="outline"
+                      >
+                        {' '}
+                        <Link to="/cart"> GO TO CART </Link>
+                      </Button>
+                    )}
                     {!isInCart && (
                       <ItemCount
                         count={count}

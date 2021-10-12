@@ -1,5 +1,12 @@
 import { IoClose } from 'react-icons/io5'
-import { Flex, Box, SimpleGrid, Text, Image, CloseButton } from '@chakra-ui/react'
+import {
+  Flex,
+  Box,
+  SimpleGrid,
+  Text,
+  Image,
+  CloseButton
+} from '@chakra-ui/react'
 
 import useCountState from '../../hooks/useCountState'
 import { useData } from '../../hooks/useData'
@@ -72,7 +79,6 @@ const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
             $ {handleConvertPrice(item.price * count)}
           </Text>
           <CloseButton size="sm" onClick={() => removeItem(item.id)} />
-          
         </Box>
       </SimpleGrid>
     </Box>

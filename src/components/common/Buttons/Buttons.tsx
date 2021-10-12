@@ -27,7 +27,9 @@ export const AddButton = ({ handleClick, isInCart }: ButtonProps) => {
       variant="primary"
       onClick={handleButtonClick}
     >
-      <Text fontSize={['x-small']}>{!isInCart ? 'ADD TO CART' : 'IS ADDED'}</Text>
+      <Text fontSize={['x-small']}>
+        {!isInCart ? 'ADD TO CART' : 'IS ADDED'}
+      </Text>
     </Button>
   )
 }

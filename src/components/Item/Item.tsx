@@ -68,7 +68,16 @@ export const Item = ({ item }: { item: ProductItem }) => {
               maxStock={item.stock}
             />
           )}
-          {isInCart && <Button fontSize="11px" leftIcon={<BiShoppingBag />} variant="outline" > <Link to='/cart'> GO TO CART  </Link></Button>}
+          {isInCart && (
+            <Button
+              fontSize="11px"
+              leftIcon={<BiShoppingBag />}
+              variant="outline"
+            >
+              {' '}
+              <Link to="/cart"> GO TO CART </Link>
+            </Button>
+          )}
           {!item.stock && <Text>No more Stock</Text>}
           {item.stock && (
             <AddButton handleClick={handleAddToCart} isInCart={isInCart} />

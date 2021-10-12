@@ -1,15 +1,21 @@
 import React, { FC } from 'react'
-import { Container, Divider, Link, Stack, Text } from '@chakra-ui/react'
+import { Container, Divider, Flex, Link, Stack, Text } from '@chakra-ui/react'
 import { ImHeart } from 'react-icons/im'
 
-import { Nav } from '../Nav/Nav'
+import { FooterNav } from '../Nav/Nav'
+import { SocialMedia } from '../SocialMedia'
 
 export const Footer: FC = () => {
   return (
     <Stack as="footer" paddingTop={20} width="100%">
       <Container maxWidth="container.xl">
         <Stack marginY="5">
-          <Nav direction={['column', 'row', 'column']} />
+          <Flex
+            flexDirection={['column', 'row','row', 'row']}
+            justifyContent="space-between">
+            <FooterNav />
+            <SocialMedia />
+          </Flex>
         </Stack>
         <Divider />
         <Stack alignItems="center" justifyContent="center" marginY="5">

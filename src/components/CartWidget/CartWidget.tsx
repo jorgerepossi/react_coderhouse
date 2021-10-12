@@ -18,17 +18,19 @@ export const CartWidget: FC = () => {
           width="30px"
         >
           <Badge
-           alignItems="center" bg="primary"
-           borderRadius="full"
-           color="white"
-           display="flex"
-           fontSize="12px"
-           height="20px"
-           justifyContent="center"
-           position="absolute"
-           px="2"
-           right="0px"
-           top="-10px" width="20px"
+            alignItems="center"
+            bg="primary"
+            borderRadius="full"
+            color="white"
+            display="flex"
+            fontSize="12px"
+            height="20px"
+            justifyContent="center"
+            position="absolute"
+            px="2"
+            right="0px"
+            top="-10px"
+            width="20px"
           >
             {state.cart.products.length}
           </Badge>

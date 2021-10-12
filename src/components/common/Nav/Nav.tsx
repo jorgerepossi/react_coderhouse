@@ -5,16 +5,30 @@ import { Flex, Stack, Box } from '@chakra-ui/react'
 import { MenuLink } from '../../../types/interfaces'
 
 import Menu from './../../../api/MenuLinks.json'
-interface Props {
-  direction?: {}
-}
-export const Nav: FC<Props> = ({ direction }): JSX.Element => {
+
+export const Nav: FC = (): JSX.Element => {
   return (
     <Stack>
-      <Flex flexDirection={direction}>
+      <Flex>
         {Menu.map(({ id, link, name }: MenuLink) => {
           return (
-            <Box key={id}>
+            <Box key={id} mx="20px">
+              <Link to={`/category/${link}`}> {name} </Link>
+            </Box>
+          )
+        })}
+      </Flex>
+    </Stack>
+  )
+}
+
+export const FooterNav: FC = (): JSX.Element => {
+  return (
+    <Stack>
+      <Flex flexDirection={['column', 'column','row', 'row']}>
+        {Menu.map(({ id, link, name }: MenuLink) => {
+          return (
+            <Box key={id} mx="20px">
               <Link to={`/category/${link}`}> {name} </Link>
             </Box>
           )
