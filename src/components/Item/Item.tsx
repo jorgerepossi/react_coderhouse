@@ -74,7 +74,6 @@ export const Item = ({ item }: { item: ProductItem }) => {
               leftIcon={<BiShoppingBag />}
               variant="outline"
             >
-              {' '}
               <Link to="/cart"> GO TO CART </Link>
             </Button>
           )}

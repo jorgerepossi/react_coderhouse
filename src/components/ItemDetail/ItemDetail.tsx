@@ -6,11 +6,11 @@ import {
   Divider,
   Image,
   Flex,
-  Button,
-  Link
+  Button
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { BiShoppingBag } from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 
 import { ItemCount } from '../ItemCount/ItemCount'
 import { Breadcrumbs } from '../Breadcrumb/Breadcrumb'
@@ -108,7 +108,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
                         leftIcon={<BiShoppingBag />}
                         variant="outline"
                       >
-                        <Link href="/cart"> GO TO CART</Link>
+                        <Link to="/cart"> GO TO CART</Link>
                       </Button>
                     )}
                     {!isInCart && (
