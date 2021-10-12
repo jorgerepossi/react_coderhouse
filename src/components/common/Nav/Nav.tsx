@@ -25,7 +25,7 @@ export const Nav: FC = (): JSX.Element => {
 export const FooterNav: FC = (): JSX.Element => {
   return (
     <Stack>
-      <Flex flexDirection={['column', 'column','row', 'row']}>
+      <Flex flexDirection={['column', 'column', 'row', 'row']}>
         {Menu.map(({ id, link, name }: MenuLink) => {
           return (
             <Box key={id} mx="20px">

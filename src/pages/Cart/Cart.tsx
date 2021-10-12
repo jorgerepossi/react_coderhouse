@@ -79,7 +79,10 @@ export const Cart: FC<Props> = () => {
 
   return (
     <Container maxWidth="container.xl">
-      <Flex  flexDirection={['column', 'column','column', 'row']} marginTop="20px">
+      <Flex
+        flexDirection={['column', 'column', 'column', 'row']}
+        marginTop="20px"
+      >
         <Box flex="2">
           <SimpleGrid columns={4} padding="20px 0">
             <Text>Product</Text>

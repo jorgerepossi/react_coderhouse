@@ -115,47 +115,51 @@ const Order = () => {
             width="768px"
           >
             <h1>
-             <b>  Order  </b>
-              <Badge
-                borderRadius="md"
-                colorScheme="green"> {id} </Badge>
+              <b> Order </b>
+              <Badge borderRadius="md" colorScheme="green">
+                {' '}
+                {id}{' '}
+              </Badge>
             </h1>
             <Box mt="20px">
               <h2>Buyer</h2>
               <Text fontSize="md">
                 User:
-                <Text as="span" color="text" textTransform="capitalize"> {orderState.buyer.userName} 
+                <Text as="span" color="text" textTransform="capitalize">
+                  {' '}
+                  {orderState.buyer.userName}
                 </Text>
               </Text>
               <Text fontSize="md">
-                
-                Email: 
-                <Text as="span" color="text"> {orderState.buyer.email} 
+                Email:
+                <Text as="span" color="text">
+                  {' '}
+                  {orderState.buyer.email}
                 </Text>
               </Text>
               <Text fontSize="md">
-                Phone: 
-                <Text as="span" color="text"> {orderState.buyer.tel} 
+                Phone:
+                <Text as="span" color="text">
+                  {' '}
+                  {orderState.buyer.tel}
                 </Text>
               </Text>
             </Box>
 
             <Box mt={5}>
-              
               <Box>
-                  <Box>
-                    <Table variant="simple">
-                      <Thead>
-                        <Tr>
-                          <Th>Image</Th>
-                          <Th>Name</Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                {orderState.items.products.map(({ item, quantity }) => (
-                        <Tr  key={item.id}>
+                <Box>
+                  <Table variant="simple">
+                    <Thead>
+                      <Tr>
+                        <Th>Image</Th>
+                        <Th>Name</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {orderState.items.products.map(({ item, quantity }) => (
+                        <Tr key={item.id}>
                           <Td width="100">
-                          
                             <Box my="10px" style={{ position: 'relative' }}>
                               <Image
                                 height="60px"
@@ -176,16 +180,24 @@ const Order = () => {
                             </Box>
                           </Td>
                           <Td flex="1">
-                            <Text fontSize="sm" textAlign="left">{item.name}</Text>
+                            <Text fontSize="sm" textAlign="left">
+                              {item.name}
+                            </Text>
                           </Td>
                         </Tr>
-                ))}
-                </Tbody>
-              </Table>
+                      ))}
+                    </Tbody>
+                  </Table>
                 </Box>
               </Box>
             </Box>
-            <Box mt={2}> <Text>  Total :<b> $ {handleConvertPrice(orderState.total)} </b> </Text></Box>
+            <Box mt={2}>
+              {' '}
+              <Text>
+                {' '}
+                Total :<b> $ {handleConvertPrice(orderState.total)} </b>{' '}
+              </Text>
+            </Box>
           </Box>
         </Flex>
       </Stack>
