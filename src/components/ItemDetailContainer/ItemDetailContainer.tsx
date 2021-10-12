@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react'
-import { Container, Spinner, Flex } from '@chakra-ui/react'
+import { Container, Spinner, Flex, Box } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom'
 
 import { ItemDetail } from '../ItemDetail'
@@ -66,9 +66,9 @@ export const ItemDetailContainer: FC = () => {
     <Container maxWidth="container.xl">
       {product ? <ItemDetail item={product} /> : 'not found'}
       {!product && (
-        <div>
+        <Box>
           <h1>Not found...</h1>
-        </div>
+        </Box>
       )}
     </Container>
   )

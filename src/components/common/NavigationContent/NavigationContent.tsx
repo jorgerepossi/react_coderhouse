@@ -8,7 +8,7 @@ export const NavigationContent: FC = () => {
   return (
     <>
       <Logo />
-      <NavBar />
+      <NavBar/>
       <CartWidget />
     </>
   )

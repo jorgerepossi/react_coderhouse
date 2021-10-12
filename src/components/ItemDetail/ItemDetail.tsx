@@ -5,7 +5,9 @@ import {
   Text,
   Divider,
   Image,
-  Flex
+  Flex,
+  Button,
+  Link
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
@@ -18,6 +20,7 @@ import { AddToCartProps } from '../../context/ProductContext'
 import { ProductItem } from '../../types/types'
 import { SocialMedia, TabsContent } from '../common'
 import { handleConvertPrice } from '../ItemCart/ItemCart'
+import { BiShoppingBag } from 'react-icons/bi'
 
 export const ItemDetail = ({ item }: { item: ProductItem }) => {
   const { count, decrement, increment } = useCountState({
@@ -61,11 +64,11 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
       <Stack as="main" direction={['column', 'column', 'row']} spacing={6}>
         <Stack direction={['column', 'column', 'row']} width="100%">
           <Box maxWidth="container.sm" width="100%">
-            <Box>
+            <Box px={10}>
               <Image
                 alt={item.name}
                 boxSize="100%"
-                fallbackSrc="https://via.placeholder.com/150"
+                fallbackSrc="http://jrepossi.com/musiccenter/img/instrumentos/ajax-loader.gif"
                 objectFit="cover"
                 src={item.image}
               />
@@ -73,8 +76,8 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
             <Flex marginBlock={10}>
               {item.images
                 ? item.images?.map((e) => (
-                    <Box key={e}>
-                      <Image alt="" height="100" src={e} width="100" />
+                    <Box key={e} >
+                      <Image alt="" height="100" src={e} width="100%" />
                     </Box>
                   ))
                 : null}
@@ -99,7 +102,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
                 {!item.stock && <Text>No stock available</Text>}
                 {item.stock && (
                   <>
-                    {isInCart && <div>Ya fue añadido</div>}
+                    {isInCart && <Button fontSize="11px" leftIcon={<BiShoppingBag />} variant="outline" > <Link to='/cart'> GO TO CART  </Link></Button>}
                     {!isInCart && (
                       <ItemCount
                         count={count}

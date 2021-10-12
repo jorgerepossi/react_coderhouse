@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Heading, Image, SimpleGrid, Text, Button } from '@chakra-ui/react'
+import { BiShoppingBag } from 'react-icons/bi'
 
 import { useData } from '../../hooks/useData'
 import AddButton from '../common/Buttons/Buttons'
@@ -67,7 +68,7 @@ export const Item = ({ item }: { item: ProductItem }) => {
               maxStock={item.stock}
             />
           )}
-          {isInCart && <Text>Thank´s</Text>}
+          {isInCart && <Button fontSize="11px" leftIcon={<BiShoppingBag />} variant="outline" > <Link to='/cart'> GO TO CART  </Link></Button>}
           {!item.stock && <Text>No more Stock</Text>}
           {item.stock && (
             <AddButton handleClick={handleAddToCart} isInCart={isInCart} />

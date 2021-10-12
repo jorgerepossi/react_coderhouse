@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { Flex, Stack, Box, ResponsiveValue } from '@chakra-ui/react'
+import { Flex, Stack, Box } from '@chakra-ui/react'
 
 import { MenuLink } from '../../../types/interfaces'
 

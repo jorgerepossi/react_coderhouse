@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react'
 import { Button } from '@chakra-ui/react'
-import { Box } from '@chakra-ui/react'
+import { Box, Input } from '@chakra-ui/react'
 
 import { useData } from '../../hooks/useData'
 import { FormData } from '../../types/types'
@@ -50,7 +50,7 @@ const CartForm = ({ handleSubmitForm }: CartFormProps) => {
       >
         <Box>
           <label htmlFor="userName">Your Name</label>
-          <input
+          <Input
             id="userName"
             name="userName"
             placeholder="Enter you name... "
@@ -69,7 +69,7 @@ const CartForm = ({ handleSubmitForm }: CartFormProps) => {
         </Box>
         <Box>
           <label htmlFor="tel">Phone</label>
-          <input
+          <Input
             id="tel"
             name="tel"
             placeholder="+5491144445566"
@@ -88,7 +88,7 @@ const CartForm = ({ handleSubmitForm }: CartFormProps) => {
         </Box>
         <Box>
           <label htmlFor="email">Email</label>
-          <input
+          <Input
             id="email"
             name="email"
             placeholder="someguy@mail.com"
@@ -105,10 +105,10 @@ const CartForm = ({ handleSubmitForm }: CartFormProps) => {
             onChange={handleChangeFormState}
           />
         </Box>
-        <div
+        <Box
           style={{
             display: 'flex',
-            justifyContent: 'space-around',
+            justifyContent: 'space-between',
             padding: 10,
             color: '#fff'
           }}
@@ -128,7 +128,7 @@ const CartForm = ({ handleSubmitForm }: CartFormProps) => {
           >
             Go to checkout
           </Button>
-        </div>
+        </Box>
       </form>
     </>
   )

@@ -1,14 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import {
-  Box,
-  Container,
-  Divider,
-  Flex,
-  SimpleGrid,
-  Spinner,
-  Text
-} from '@chakra-ui/react'
+import {  Box, Container, Flex, Spinner,  Text } from '@chakra-ui/react'
+
 import { getFirestore } from '../../api/config'
 import useBooleanState from '../../hooks/useBooleanState'
 import { NewOrderCart } from '../../types/types'
@@ -77,9 +70,9 @@ const Order = () => {
 
   if (isError) {
     return (
-      <div>
+      <Box>
         <h1>Error!!! document not found for id {id}</h1>
-      </div>
+      </Box>
     )
   }
 
@@ -94,7 +87,7 @@ const Order = () => {
         <Text>tel: {orderState.buyer.tel}</Text>
       </Box>
 
-      <div>
+      <Box>
         Total : {orderState.total}
         <ul>
           {orderState.items.products.map(({ item, quantity }) => (
@@ -104,7 +97,7 @@ const Order = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </Box>
     </Container>
   )
 }
