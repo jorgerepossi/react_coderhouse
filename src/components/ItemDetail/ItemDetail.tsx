@@ -68,7 +68,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
               <Image
                 alt={item.name}
                 boxSize="100%"
-                fallbackSrc="http://jrepossi.com/musiccenter/img/instrumentos/ajax-loader.gif"
+                fallbackSrc="https://verbostudio.com/musiccenter/img/instrumentos/ajax-loader.gif"
                 objectFit="cover"
                 src={item.image}
               />
@@ -108,8 +108,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
                         leftIcon={<BiShoppingBag />}
                         variant="outline"
                       >
-                        {' '}
-                        <Link to="/cart"> GO TO CART </Link>
+                        <Link href="/cart"> GO TO CART</Link>
                       </Button>
                     )}
                     {!isInCart && (
