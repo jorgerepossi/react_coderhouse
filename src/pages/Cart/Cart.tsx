@@ -22,8 +22,8 @@ export const Cart: FC<Props> = () => {
   const { state, removeCart, handleUpdatePrice } = useData()
   const history = useHistory()
 
-  const handleChangePrice = (price: number, type: 'add' | 'subtract') => {
-    handleUpdatePrice(type, price)
+  const handleChangePrice = (price: number, type: 'add' | 'subtract', id: string, quantity: number) => {
+    handleUpdatePrice(type, price, id, quantity)
   }
 
   const totalPriceEncode = String(state.cart.total).replace(

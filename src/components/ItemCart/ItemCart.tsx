@@ -9,7 +9,7 @@ import { ItemCount } from '../ItemCount'
 interface ItemCartProps {
   item: ProductItem
   quantity: number
-  handleChangePrice: (price: number, type: 'add' | 'subtract') => void
+  handleChangePrice: (price: number, type: 'add' | 'subtract', id: string, quantity: number) => void
 }
 
 export const handleConvertPrice = (price: number) => {
@@ -26,13 +26,13 @@ const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
 
   const handleDecrementPrice = () => {
     if (count - 1 === 0 || count === 0) return
-    handleChangePrice(item.price, 'subtract')
+    handleChangePrice(item.price, 'subtract', item.id, count - 1)
     decrement()
   }
 
   const handleIncrementPrice = () => {
     increment()
-    handleChangePrice(item.price, 'add')
+    handleChangePrice(item.price, 'add', item.id, count + 1)
   }
 
   return (

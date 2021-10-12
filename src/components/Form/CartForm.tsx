@@ -24,6 +24,7 @@ const CartForm = ({ handleSubmitForm }: CartFormProps) => {
     }))
   }
 
+  
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     handleSubmitForm(formState)

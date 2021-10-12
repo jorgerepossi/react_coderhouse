@@ -21,6 +21,8 @@ type DataAction =
       payload: {
         type: 'add' | 'subtract'
         price: number
+        id: string
+        quantity: number
       }
     }
   | {
@@ -125,6 +127,20 @@ export const productReducer = (
 
     case 'handleUpdatePrice':
       let newPrice = 0
+      const productIdToUpdate = action.payload.id
+      const productQuantityToUpdate = action.payload.quantity
+
+
+      const newArrProducts = state.cart.products.map(el => {
+        if(el.item.id === productIdToUpdate) {
+          return {
+            ...el,
+            quantity: productQuantityToUpdate
+          }
+        }
+
+        return el
+      })
 
       if (action.payload.type === 'add')
         newPrice = state.cart.total + action.payload.price
@@ -134,6 +150,7 @@ export const productReducer = (
         ...state,
         cart: {
           ...state.cart,
+          products: newArrProducts,
           total: newPrice
         }
       }
