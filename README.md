@@ -1,7 +1,7 @@
 ### Hola soy Jo 👨‍
 ![ts](https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555)
 ![react](https://badgen.net/badge/-/React?icon=react&label&labelColor=blue&color=555555)
-![eslint](https://shields-staging.herokuapp.com/badge/Eslint-v6.14.15-blueviolet)
+![eslint](https://shields-staging.herokuapp.com/badge/Eslint-v7.32.0-blueviolet)
 ![npm](https://shields-staging.herokuapp.com/badge/npm-v6.14.15-blue)
 ![NodeJS](https://shields-staging.herokuapp.com/badge/NodeJS-v14.17.6-brightgreen)
 
