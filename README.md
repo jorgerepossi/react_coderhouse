@@ -32,7 +32,6 @@ yarn add react-icons --save
 ###### Para correr el sitio en forma local se debe hacer con el comando:
 ```
 git clone https://github.com/jorgerepossi/react_coderhouse.git
-
 ```
 ### Start dev server
 ```
@@ -40,6 +39,5 @@ npm run dev
 ```
 ### Build
 ```
-tsc && vite build
-
+npm run build
 ```
