@@ -1,4 +1,4 @@
-### Hola soy Jo 👨‍
+### Hola soy Jo Repossi 👨‍
 ![ts](https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555)
 ![react](https://badgen.net/badge/-/React?icon=react&label&labelColor=blue&color=555555)
 ![eslint](https://shields-staging.herokuapp.com/badge/Eslint-v7.32.0-blueviolet)
@@ -6,6 +6,15 @@
 ![NodeJS](https://shields-staging.herokuapp.com/badge/NodeJS-v14.17.6-brightgreen)
 
 ###### La tecnología que se usa en este site es Typescript y React con  [Vite JS](https://vitejs.dev/).
+##### With NPM:
+````
+npm init vite@latest
+````
+##### With Yarn:
+`````
+yarn create vite
+`````
+
 ###### Se utiliza librería de componentes  [Chakra UI](https://chakra-ui.com/).
 ###### Se utiliza el Hook [Husky js ](https://typicode.github.io/husky/#/) [Prettier](https://prettier.io/) para poder hacer el pre-commit dandole un formato requerido al código
 ###### Se utiliza [Helmet](https://www.npmjs.com/package/react-helmet) para poder poner el título a la cabecera
@@ -33,11 +42,16 @@ yarn add react-icons --save
 ```
 git clone https://github.com/jorgerepossi/react_coderhouse.git
 ```
-### Start dev server
+### Instalar las dependencias
+```
+cd react_coderhouse
+yarn install
+```
+### Ejecutar el comando para correr localmente el  servidor
 ```
 npm run dev
 ```
-### Build
+### Ejecutar el comando para crear en modo producción
 ```
 npm run build
 ```
