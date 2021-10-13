@@ -1,6 +1,12 @@
 import { extendTheme } from '@chakra-ui/react'
-import { whiten } from '@chakra-ui/theme-tools'
+import { whiten, createBreakpoints } from '@chakra-ui/theme-tools'
 export { ButtonStyled as Button } from './../components/common/ButtonStyled'
+const breakpoints = createBreakpoints({
+  sm: '40em',
+  md: '52em',
+  lg: '64em',
+  xl: '80em'
+})
 
 export const theme = extendTheme({
   colors: {
@@ -10,6 +16,7 @@ export const theme = extendTheme({
       20: 'hsl(240, 7%, 87%)',
       30: 'hsl(240, 7%, 77%)'
     },
+    breakpoints,
     primary: '#06f',
     secondary: '#f7f7f8',
     text: '#7d7c83'

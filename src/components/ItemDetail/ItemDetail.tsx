@@ -63,7 +63,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
 
       <Divider orientation="horizontal" />
 
-      <Stack as="main" direction={['column', 'column', 'row']} spacing={6}>
+      <Stack as="section" direction={['column', 'column', 'row']} spacing={6}>
         <Stack direction={['column', 'column', 'row']} width="100%">
           <Box maxWidth="container.sm" width="100%">
             <Box px={10}>
@@ -130,15 +130,17 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
               </Flex>
             </Box>
             <Divider orientation="horizontal" />
-            <Box mb={5} mt={5}>
-              <SocialMedia />
-            </Box>
+            <Stack width="100%">
+              <Box mb={5} mt={5}>
+                <SocialMedia />
+              </Box>
+            </Stack>
+            <Divider orientation="horizontal" />
           </Box>
         </Stack>
-      </Stack>
-
-      <Stack as="section" mt={5}>
-        <TabsContent />
+        <Stack as="section" mt={5} width="100%">
+          <TabsContent />
+        </Stack>
       </Stack>
     </>
   )
