@@ -1,19 +1,9 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  Flex,
-  Stack,
-  Box,
-  IconButton,
-  useDisclosure,
-  Button,
-  Input
-} from '@chakra-ui/react'
+import { Flex, Stack, Box, IconButton, useDisclosure } from '@chakra-ui/react'
 import { GrMenu } from 'react-icons/gr'
 import {
   Drawer,
-  DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -40,12 +30,7 @@ export const Nav: FC = (): JSX.Element => {
         })}
       </Flex>
 
-      <Drawer
-        finalFocusRef={btnRef}
-        isOpen={isOpen}
-        placement="right"
-        onClose={onClose}
-      >
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
@@ -60,12 +45,11 @@ export const Nav: FC = (): JSX.Element => {
         </DrawerContent>
       </Drawer>
       <IconButton
-        ref={btnRef}
         aria-label="menu"
         display={['flex', 'flex', 'none', 'none']}
         icon={<GrMenu />}
-        variant="primary"
         size="lg"
+        variant="primary"
         onClick={onOpen}
       />
     </Stack>
