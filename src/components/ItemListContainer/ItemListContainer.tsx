@@ -45,7 +45,7 @@ export const ItemListContainer: FC = () => {
 
   return (
     <Container marginBottom={20} maxWidth="container.xl">
-      <Head title={` ${title} | Music Center`} />
+      <Head title={` Music Center`} />
       <Breadcrumbs item={categorie} />
       {product.length ? (
         <ItemList dataMap={product} />

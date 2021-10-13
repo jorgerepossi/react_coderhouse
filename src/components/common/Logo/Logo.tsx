@@ -1,10 +1,15 @@
 import React from 'react'
-import { Text } from '@chakra-ui/react'
+import { Image } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 export const Logo = () => {
   return (
     <Link to="/">
-      <Text color={'facebook.300'}>logo</Text>
+      <Image
+        src="https://www.verbostudio.com/musiccenter/img/logo.svg"
+        height="50"
+        width="150"
+        alt="Logo Music Store"
+      />
     </Link>
   )
 }
