@@ -60,11 +60,14 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
           <Breadcrumbs item={item.category} />
         </Box>
       </Stack>
-
       <Divider orientation="horizontal" />
 
-      <Stack as="section" direction={['column', 'column', 'row']} spacing={6}>
-        <Stack direction={['column', 'column', 'row']} width="100%">
+      <Stack
+        as="section"
+        direction={['column', 'column', 'row', 'row']}
+        spacing={6}
+      >
+        <Stack direction={['column', 'column', 'row', 'row']} width="100%">
           <Box maxWidth="container.sm" width="100%">
             <Box px={10}>
               <Image
@@ -138,9 +141,9 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
             <Divider orientation="horizontal" />
           </Box>
         </Stack>
-        <Stack as="section" mt={5} width="100%">
-          <TabsContent />
-        </Stack>
+      </Stack>
+      <Stack as="section" mt={5} width="100%">
+        <TabsContent />
       </Stack>
     </>
   )
