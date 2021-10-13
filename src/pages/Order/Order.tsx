@@ -26,6 +26,7 @@ import { getFirestore } from '../../api/config'
 import useBooleanState from '../../hooks/useBooleanState'
 import { NewOrderCart } from '../../types/types'
 import { handleConvertPrice } from '../../components/ItemCart/ItemCart'
+import Head from '../../components/common/Head/Head'
 
 const Order = () => {
   const { id }: { id: string } = useParams()
@@ -71,6 +72,7 @@ const Order = () => {
   if (isLoading) {
     return (
       <Container maxWidth="container.xl">
+        <Head title="Order | Music Center" />
         <Flex
           alignContent="center"
           alignItems="center"

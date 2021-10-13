@@ -15,6 +15,7 @@ import CartForm from '../../components/Form/CartForm'
 import { FormData } from '../../types/types'
 import { getFirestore } from '../../api/config'
 import { EmptyCart } from '../../components'
+import Head from '../../components/common/Head/Head'
 
 interface Props {}
 
@@ -83,6 +84,7 @@ export const Cart: FC<Props> = () => {
         flexDirection={['column', 'column', 'column', 'row']}
         marginTop="20px"
       >
+        <Head title="Cart | Music Center" />
         <Box flex="2">
           <SimpleGrid columns={4} padding="20px 0">
             <Text>Product</Text>

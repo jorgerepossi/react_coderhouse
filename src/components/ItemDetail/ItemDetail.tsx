@@ -21,6 +21,7 @@ import { AddToCartProps } from '../../context/ProductContext'
 import { ProductItem } from '../../types/types'
 import { SocialMedia, TabsContent } from '../common'
 import { handleConvertPrice } from '../ItemCart/ItemCart'
+import Head from '../common/Head/Head'
 
 export const ItemDetail = ({ item }: { item: ProductItem }) => {
   const { count, decrement, increment } = useCountState({
@@ -53,6 +54,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
 
   return (
     <>
+      <Head title={` ${item.name} | Music Center`} />
       <Stack direction={['column', 'column', 'row']} width="100%">
         <Box>
           <Breadcrumbs item={item.category} />
