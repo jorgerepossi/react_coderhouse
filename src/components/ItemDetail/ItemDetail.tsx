@@ -88,7 +88,7 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
                 : null}
             </Flex>
           </Box>
-          <Box height="500px" maxWidth="500px" width="100%">
+          <Box height="auto" maxWidth="500px" width="100%">
             <Heading as="h3" mb={5} mt={5} size="lg">
               {item.name}
             </Heading>

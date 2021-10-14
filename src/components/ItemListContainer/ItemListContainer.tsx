@@ -41,11 +41,14 @@ export const ItemListContainer: FC = () => {
   useEffect(() => {
     showFilterCategories()
   }, [categorie])
-  const title = categorie
+
+  const str = new String(categorie)
+  const title = str.charAt(0).toUpperCase() + str.slice(1)
+  const home = categorie ? title : 'Home'
 
   return (
     <Container marginBottom={20} maxWidth="container.xl">
-      <Head title={` Music Center`} />
+      <Head title={`${home} | Music Center`} />
       <Breadcrumbs item={categorie} />
       {product.length ? (
         <ItemList dataMap={product} />
