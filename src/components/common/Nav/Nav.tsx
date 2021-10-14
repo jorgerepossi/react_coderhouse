@@ -16,7 +16,7 @@ import Menu from './../../../api/MenuLinks.json'
 
 export const Nav: FC = (): JSX.Element => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
+  const btnRef = React.useRef<HTMLButtonElement>(null)
 
   return (
     <Stack>
@@ -30,7 +30,12 @@ export const Nav: FC = (): JSX.Element => {
         })}
       </Flex>
 
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
@@ -51,6 +56,7 @@ export const Nav: FC = (): JSX.Element => {
         size="lg"
         variant="primary"
         onClick={onOpen}
+        ref={btnRef}
       />
     </Stack>
   )

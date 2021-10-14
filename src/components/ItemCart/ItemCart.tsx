@@ -48,8 +48,14 @@ const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
   }
 
   return (
-    <Box alignItems="center" marginBottom="40px">
-      <SimpleGrid alignItems="center" columns={4} textAlign="center">
+    <Box
+      alignItems="center"
+      paddingBottom={6}
+      borderBottomWidth="1px"
+      paddingTop={4}
+      marginBottom={4}
+    >
+      <SimpleGrid alignItems="center" columns={[2, 2, 4]} textAlign="center">
         <Box>
           <Flex alignItems="center">
             <Image height="80px" src={item.image} width="80px" />

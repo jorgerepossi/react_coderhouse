@@ -11,7 +11,7 @@ export const Footer: FC = () => {
       <Container maxWidth="container.xl">
         <Stack marginY="5">
           <Flex
-            flexDirection={['column', 'row', 'row', 'row']}
+            flexDirection={['row', 'row', 'column', 'row']}
             justifyContent="space-between"
           >
             <FooterNav />
