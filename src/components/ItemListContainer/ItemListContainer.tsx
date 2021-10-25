@@ -15,6 +15,7 @@ export const ItemListContainer: FC = () => {
 
   const [product, setProduct] = useState<ProductItem[]>([])
   const { categorie }: { categorie: string } = useParams()
+
   const showFilterCategories = () => {
     const initialCategorie =
       categorie !== undefined
