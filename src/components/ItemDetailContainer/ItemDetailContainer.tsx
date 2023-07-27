@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react'
-import { Container } from '@chakra-ui/react'
+import { Container, Spinner, Flex, Box } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom'
 
 import { ItemDetail } from '../ItemDetail'
@@ -43,19 +43,32 @@ export const ItemDetailContainer: FC = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
+      <Container maxWidth="container.xl">
+        <Flex
+          alignContent="center"
+          alignItems="center"
+          h="80vh"
+          justifyContent="center"
+        >
+          <Spinner
+            color="primary"
+            emptyColor="gray.200"
+            size="xl"
+            speed="0.65s"
+            thickness="4px"
+          />
+        </Flex>
+      </Container>
     )
   }
 
   return (
     <Container maxWidth="container.xl">
-      {product && <ItemDetail item={product} />}
+      {product ? <ItemDetail item={product} /> : 'not found'}
       {!product && (
-        <div>
+        <Box>
           <h1>Not found...</h1>
-        </div>
+        </Box>
       )}
     </Container>
   )

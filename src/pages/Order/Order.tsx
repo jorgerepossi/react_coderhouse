@@ -1,9 +1,32 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import {
+  Box,
+  Container,
+  Flex,
+  Spinner,
+  Stack,
+  Text,
+  Image,
+  Badge,
+  position
+} from '@chakra-ui/react'
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption
+} from '@chakra-ui/react'
 
 import { getFirestore } from '../../api/config'
 import useBooleanState from '../../hooks/useBooleanState'
 import { NewOrderCart } from '../../types/types'
+import { handleConvertPrice } from '../../components/ItemCart/ItemCart'
+import Head from '../../components/common/Head/Head'
 
 const Order = () => {
   const { id }: { id: string } = useParams()
@@ -48,43 +71,139 @@ const Order = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <h1>is Loading....</h1>
-      </div>
+      <Container maxWidth="container.xl">
+        <Head title="Order | Music Center" />
+        <Flex
+          alignContent="center"
+          alignItems="center"
+          h="80vh"
+          justifyContent="center"
+        >
+          <Spinner
+            color="primary"
+            emptyColor="gray.200"
+            size="xl"
+            speed="0.65s"
+            thickness="4px"
+          />
+        </Flex>
+      </Container>
     )
   }
 
   if (isError) {
     return (
-      <div>
+      <Box>
         <h1>Error!!! document not found for id {id}</h1>
-      </div>
+      </Box>
     )
   }
 
   return (
-    <div>
-      <h1>Order {id}</h1>
+    <Container maxWidth="container.xl">
+      <Stack>
+        <Flex
+          alignContent="center"
+          alignItems="center"
+          flexDirection="column"
+          h="80vh"
+          justifyContent="center"
+        >
+          <Box
+            bg="white"
+            borderRadius="md"
+            boxShadow="xs"
+            padding="20px"
+            width="768px"
+          >
+            <h1>
+              <b> Order </b>
+              <Badge borderRadius="md" colorScheme="green">
+                {' '}
+                {id}{' '}
+              </Badge>
+            </h1>
+            <Box mt="20px">
+              <h2>Buyer</h2>
+              <Text fontSize="md">
+                User:
+                <Text as="span" color="text" textTransform="capitalize">
+                  {' '}
+                  {orderState.buyer.userName}
+                </Text>
+              </Text>
+              <Text fontSize="md">
+                Email:
+                <Text as="span" color="text">
+                  {' '}
+                  {orderState.buyer.email}
+                </Text>
+              </Text>
+              <Text fontSize="md">
+                Phone:
+                <Text as="span" color="text">
+                  {' '}
+                  {orderState.buyer.tel}
+                </Text>
+              </Text>
+            </Box>
 
-      <div>
-        <h2>Buyer</h2>
-        <p>userName: {orderState.buyer.userName}</p>
-        <p>email: {orderState.buyer.email}</p>
-        <p>tel: {orderState.buyer.tel}</p>
-      </div>
-
-      <div>
-        Total : {orderState.total}
-        <ul>
-          {orderState.items.products.map(({ item, quantity }) => (
-            <li key={item.id}>
-              <p>{item.name}</p>
-              <p>cantidad: {quantity}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+            <Box mt={5}>
+              <Box>
+                <Box>
+                  <Table variant="simple">
+                    <Thead>
+                      <Tr>
+                        <Th>Image</Th>
+                        <Th>Name</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {orderState.items.products.map(({ item, quantity }) => (
+                        <Tr key={item.id}>
+                          <Td width="100">
+                            <Box my="10px" style={{ position: 'relative' }}>
+                              <Image
+                                height="60px"
+                                src={item.image}
+                                width="60px"
+                              />
+                              <Badge
+                                borderRadius="md"
+                                colorScheme="green"
+                                style={{
+                                  position: 'absolute',
+                                  top: 0,
+                                  left: 80
+                                }}
+                              >
+                                {quantity}
+                              </Badge>
+                            </Box>
+                          </Td>
+                          <Td flex="1">
+                            <Text fontSize="sm" textAlign="left">
+                              {item.name}
+                            </Text>
+                          </Td>
+                        </Tr>
+                      ))}
+                    </Tbody>
+                  </Table>
+                </Box>
+              </Box>
+            </Box>
+            <Box mt={2}>
+              {' '}
+              <Text>
+                {' '}
+                Total :<b> $ {handleConvertPrice(orderState.total)} </b>{' '}
+              </Text>
+            </Box>
+          </Box>
+        </Flex>
+      </Stack>
+    </Container>
   )
 }
 

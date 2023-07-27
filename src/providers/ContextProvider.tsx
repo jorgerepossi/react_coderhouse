@@ -51,10 +51,15 @@ const ProductProvider: FC = ({ children }) => {
     })
   }
 
-  const handleUpdatePrice = (type: 'add' | 'subtract', price: number) => {
+  const handleUpdatePrice = (
+    type: 'add' | 'subtract',
+    price: number,
+    id: string,
+    quantity: number
+  ) => {
     dispatch({
       type: 'handleUpdatePrice',
-      payload: { type, price }
+      payload: { type, price, id, quantity }
     })
   }
 

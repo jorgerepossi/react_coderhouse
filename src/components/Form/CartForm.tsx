@@ -1,8 +1,9 @@
 import { ChangeEvent, useState } from 'react'
+import { Button } from '@chakra-ui/react'
+import { Box, Input } from '@chakra-ui/react'
 
 import { useData } from '../../hooks/useData'
 import { FormData } from '../../types/types'
-
 interface CartFormProps {
   handleSubmitForm: (formData: FormData) => void
 }
@@ -37,52 +38,99 @@ const CartForm = ({ handleSubmitForm }: CartFormProps) => {
   }
 
   return (
-    <form
-      style={{
-        backgroundColor: '#079',
-        padding: 10,
-        display: 'flex',
-        flexDirection: 'column'
-      }}
-      onSubmit={handleSubmit}
-    >
-      <input
-        name="userName"
-        placeholder="Ingrese su nombre"
-        type="text"
-        value={formState.userName}
-        onChange={handleChangeFormState}
-      />
-      <input
-        name="tel"
-        placeholder="Ingrese su numero de telefono"
-        type="tel"
-        value={formState.tel}
-        onChange={handleChangeFormState}
-      />
-      <input
-        name="email"
-        placeholder="Ingrese su email"
-        type="email"
-        value={formState.email}
-        onChange={handleChangeFormState}
-      />
-      <div
+    <>
+      <form
         style={{
-          display: 'flex',
-          justifyContent: 'space-around',
-          padding: 10,
-          color: '#fff'
+          width: '100%',
+          padding: '20px',
+          border: '1px solid hsl(240, 7%, 87%)',
+          borderRadius: 5
         }}
+        onSubmit={handleSubmit}
       >
-        <button type="button" onClick={removeCart}>
-          Delete Cart
-        </button>
-        <button disabled={handleDisableButton()} type="submit">
-          Go to checkout
-        </button>
-      </div>
-    </form>
+        <Box>
+          <label htmlFor="userName">Your Name</label>
+          <Input
+            id="userName"
+            name="userName"
+            placeholder="Enter you name... "
+            style={{
+              width: '100%',
+              height: '40px',
+              border: '1px solid hsl(240, 7%, 87%)',
+              borderRadius: 5,
+              padding: 10,
+              marginBottom: 10
+            }}
+            type="text"
+            value={formState.userName}
+            onChange={handleChangeFormState}
+          />
+        </Box>
+        <Box>
+          <label htmlFor="tel">Phone</label>
+          <Input
+            id="tel"
+            name="tel"
+            placeholder="+5491144445566"
+            style={{
+              width: '100%',
+              height: '40px',
+              border: '1px solid hsl(240, 7%, 87%)',
+              borderRadius: 5,
+              padding: 10,
+              marginBottom: 10
+            }}
+            type="number"
+            value={formState.tel}
+            onChange={handleChangeFormState}
+          />
+        </Box>
+        <Box>
+          <label htmlFor="email">Email</label>
+          <Input
+            id="email"
+            name="email"
+            placeholder="someguy@mail.com"
+            style={{
+              width: '100%',
+              height: '40px',
+              border: '1px solid hsl(240, 7%, 87%)',
+              borderRadius: 5,
+              padding: 10,
+              marginBottom: 10
+            }}
+            type="email"
+            value={formState.email}
+            onChange={handleChangeFormState}
+          />
+        </Box>
+        <Box
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: 10,
+            color: '#fff'
+          }}
+        >
+          <Button
+            color="primary"
+            type="button"
+            variant="outline"
+            onClick={removeCart}
+          >
+            Delete Cart
+          </Button>
+          <Button
+            disabled={handleDisableButton()}
+            type="submit"
+            variant="primary"
+          >
+            Go to checkout
+          </Button>
+        </Box>
+      </form>
+    </>
   )
 }
 

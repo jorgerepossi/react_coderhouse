@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Box } from '@chakra-ui/react'
+import { Box, Badge } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { BiShoppingBag } from 'react-icons/bi'
 
@@ -17,10 +17,33 @@ export const CartWidget: FC = () => {
           position="relative"
           width="30px"
         >
-          <Box
-            alignContent="center"
+          <Badge
             alignItems="center"
-            backgroundColor="red"
+            bg="primary"
+            borderRadius="full"
+            color="white"
+            display="flex"
+            fontSize="12px"
+            height="20px"
+            justifyContent="center"
+            position="absolute"
+            px="2"
+            right="0px"
+            top="-10px"
+            width="20px"
+          >
+            {state.cart.products.length}
+          </Badge>
+
+          <BiShoppingBag size="25" />
+        </Box>
+      </Link>
+    </Box>
+  )
+}
+/*  alignContent="center"
+            alignItems="center"
+            bg="primary"
             borderRadius="50px"
             color="white"
             display="flex"
@@ -30,15 +53,4 @@ export const CartWidget: FC = () => {
             position="absolute"
             right="0px"
             top="-10px"
-            width="20px"
-          >
-            {' '}
-            {state.cart.products.length}
-          </Box>
-
-          <BiShoppingBag size="25" />
-        </Box>
-      </Link>
-    </Box>
-  )
-}
+            width="20px" */

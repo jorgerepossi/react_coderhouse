@@ -5,9 +5,12 @@ import {
   Text,
   Divider,
   Image,
-  Flex
+  Flex,
+  Button
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { BiShoppingBag } from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 
 import { ItemCount } from '../ItemCount/ItemCount'
 import { Breadcrumbs } from '../Breadcrumb/Breadcrumb'
@@ -16,6 +19,9 @@ import useCountState from '../../hooks/useCountState'
 import { useData } from '../../hooks/useData'
 import { AddToCartProps } from '../../context/ProductContext'
 import { ProductItem } from '../../types/types'
+import { SocialMedia, TabsContent } from '../common'
+import { handleConvertPrice } from '../ItemCart/ItemCart'
+import Head from '../common/Head/Head'
 
 export const ItemDetail = ({ item }: { item: ProductItem }) => {
   const { count, decrement, increment } = useCountState({
@@ -48,42 +54,50 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
 
   return (
     <>
+      <Head title={` ${item.name} | Music Center`} />
       <Stack direction={['column', 'column', 'row']} width="100%">
         <Box>
           <Breadcrumbs item={item.category} />
         </Box>
       </Stack>
       <Divider orientation="horizontal" />
-      <Stack as="main" direction={['column', 'column', 'row']} spacing={6}>
-        <Stack direction={['column', 'column', 'row']} width="100%">
+
+      <Stack
+        as="section"
+        direction={['column', 'column', 'row', 'row']}
+        spacing={6}
+      >
+        <Stack direction={['column', 'column', 'row', 'row']} width="100%">
           <Box maxWidth="container.sm" width="100%">
-            <Box>
+            <Box px={10}>
               <Image
                 alt={item.name}
                 boxSize="100%"
-                fallbackSrc="https://via.placeholder.com/150"
+                fallbackSrc="https://verbostudio.com/musiccenter/img/instrumentos/ajax-loader.gif"
                 objectFit="cover"
                 src={item.image}
               />
             </Box>
-            <Flex>
+            <Flex marginBlock={10}>
               {item.images
                 ? item.images?.map((e) => (
                     <Box key={e}>
-                      <Image alt="" height="100" src={e} width="100" />
+                      <Image alt="" height="100" src={e} width="100%" />
                     </Box>
                   ))
                 : null}
             </Flex>
           </Box>
-          <Box height="500px" maxWidth="500px" width="100%">
+          <Box height="auto" maxWidth="500px" width="100%">
             <Heading as="h3" mb={5} mt={5} size="lg">
               {item.name}
             </Heading>
-            <Text fontSize="xl" mb={5}>
-              <b> {item.price} </b>
+            <Text color="primary" fontSize="xl" mb={5}>
+              <b>{`$${handleConvertPrice(item.price)}`} </b>
             </Text>
-            <Text fontSize="md">{item.description}</Text>
+            <Text color="text" fontSize="md">
+              {item.description}
+            </Text>
             <Text fontSize="sm" mb={5} mt={5}>
               Stock: <b>{item.stock}</b>
             </Text>
@@ -93,7 +107,15 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
                 {!item.stock && <Text>No stock available</Text>}
                 {item.stock && (
                   <>
-                    {isInCart && <div>Ya fue añadido</div>}
+                    {isInCart && (
+                      <Button
+                        fontSize="11px"
+                        leftIcon={<BiShoppingBag />}
+                        variant="outline"
+                      >
+                        <Link to="/cart"> GO TO CART</Link>
+                      </Button>
+                    )}
                     {!isInCart && (
                       <ItemCount
                         count={count}
@@ -110,10 +132,19 @@ export const ItemDetail = ({ item }: { item: ProductItem }) => {
                 )}
               </Flex>
             </Box>
+            <Divider orientation="horizontal" />
+            <Stack width="100%">
+              <Box mb={5} mt={5}>
+                <SocialMedia />
+              </Box>
+            </Stack>
+            <Divider orientation="horizontal" />
           </Box>
         </Stack>
       </Stack>
-      <Divider orientation="horizontal" />
+      <Stack as="section" mt={5} width="100%">
+        <TabsContent />
+      </Stack>
     </>
   )
 }

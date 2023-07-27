@@ -23,11 +23,13 @@ export const AddButton = ({ handleClick, isInCart }: ButtonProps) => {
       disabled={isInCart}
       isLoading={isLoading}
       leftIcon={<BiShoppingBag />}
-      loadingText="Adding to cart..."
+      loadingText="ADDING..."
       variant="primary"
       onClick={handleButtonClick}
     >
-      <Text>{!isInCart ? 'ADD TO CART' : 'IS ADDED'}</Text>
+      <Text fontSize={['x-small']}>
+        {!isInCart ? 'ADD TO CART' : 'IS ADDED'}
+      </Text>
     </Button>
   )
 }

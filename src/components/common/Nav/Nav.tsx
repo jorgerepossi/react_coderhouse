@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { Flex, Stack, Box } from '@chakra-ui/react'
 
@@ -9,10 +9,26 @@ import Menu from './../../../api/MenuLinks.json'
 export const Nav: FC = (): JSX.Element => {
   return (
     <Stack>
-      <Flex>
+      <Flex display={['none', 'none', 'flex', 'flex']}>
         {Menu.map(({ id, link, name }: MenuLink) => {
           return (
-            <Box key={id}>
+            <Box key={id} mx="20px">
+              <Link to={`/category/${link}`}> {name} </Link>
+            </Box>
+          )
+        })}
+      </Flex>
+    </Stack>
+  )
+}
+
+export const FooterNav: FC = (): JSX.Element => {
+  return (
+    <Stack>
+      <Flex flexDirection={['column', 'column', 'row', 'row']}>
+        {Menu.map(({ id, link, name }: MenuLink) => {
+          return (
+            <Box key={id} mx="20px">
               <Link to={`/category/${link}`}> {name} </Link>
             </Box>
           )

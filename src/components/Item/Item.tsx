@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Heading, Image, Text } from '@chakra-ui/react'
+import { Box, Heading, Image, SimpleGrid, Text, Button } from '@chakra-ui/react'
+import { BiShoppingBag } from 'react-icons/bi'
 
 import { useData } from '../../hooks/useData'
 import AddButton from '../common/Buttons/Buttons'
@@ -8,6 +9,7 @@ import { ProductItem } from '../../types/types'
 import { ItemCount } from '../ItemCount'
 import useCountState from '../../hooks/useCountState'
 import { AddToCartProps } from '../../context/ProductContext'
+import { handleConvertPrice } from '../ItemCart/ItemCart'
 
 export const Item = ({ item }: { item: ProductItem }) => {
   const { addToCart, state } = useData()
@@ -25,10 +27,6 @@ export const Item = ({ item }: { item: ProductItem }) => {
     addToCart(itemToAddInCart)
   }
 
-  const desc = (params: string | undefined) => {
-    return params && params.substring(0, 60)
-  }
-
   const handleIsAlreadyInCart = () => {
     const { products } = state.cart
 
@@ -42,7 +40,7 @@ export const Item = ({ item }: { item: ProductItem }) => {
   }, [state.cart])
 
   return (
-    <Box flex="1" margin="20px 0px">
+    <Box boxShadow="xs" flex="1" margin="20px 0px" padding={5} rounded="md">
       <Link to={`/item/${item.id}`}>
         <Box display="flex" justifyContent="center">
           <Image
@@ -53,27 +51,38 @@ export const Item = ({ item }: { item: ProductItem }) => {
             src={item.image}
           />
         </Box>
-        <Box alignItems="center" display="flex" height="50px">
-          <Heading size="sm">{item.name}</Heading>
+        <Box display="flex" height="50px" mt={5}>
+          <Heading size="xs">{item.name}</Heading>
         </Box>
-        <Box display="flex" height="80px">
-          <Text>{desc(item.description)}</Text>
-        </Box>
-        <Text> stock {item.stock}</Text>
+        <Text color="primary" fontWeight="bold">
+          {`$${handleConvertPrice(item.price)}`}
+        </Text>
       </Link>
-      {!isInCart && (
-        <ItemCount
-          count={count}
-          decrement={decrement}
-          increment={increment}
-          maxStock={item.stock}
-        />
-      )}
-      {isInCart && <div>añadir algo aqui</div>}
-      {!item.stock && <Text>No hay Stock</Text>}
-      {item.stock && (
-        <AddButton handleClick={handleAddToCart} isInCart={isInCart} />
-      )}
+      <Box mt={5}>
+        <SimpleGrid columns={2} gap={2}>
+          {!isInCart && (
+            <ItemCount
+              count={count}
+              decrement={decrement}
+              increment={increment}
+              maxStock={item.stock}
+            />
+          )}
+          {isInCart && (
+            <Button
+              fontSize="11px"
+              leftIcon={<BiShoppingBag />}
+              variant="outline"
+            >
+              <Link to="/cart"> GO TO CART </Link>
+            </Button>
+          )}
+          {!item.stock && <Text>No more Stock</Text>}
+          {item.stock && (
+            <AddButton handleClick={handleAddToCart} isInCart={isInCart} />
+          )}
+        </SimpleGrid>
+      </Box>
     </Box>
   )
 }

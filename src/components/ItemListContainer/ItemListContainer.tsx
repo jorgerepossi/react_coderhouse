@@ -7,6 +7,7 @@ import { SkeletonProd } from '../common/SkeletonProd'
 import { getFirestore } from '../../api/config'
 import { Breadcrumbs } from '../Breadcrumb/Breadcrumb'
 import { ProductItem } from '../../types/types'
+import Head from '../common/Head/Head'
 
 export const ItemListContainer: FC = () => {
   const db = getFirestore()
@@ -14,6 +15,7 @@ export const ItemListContainer: FC = () => {
 
   const [product, setProduct] = useState<ProductItem[]>([])
   const { categorie }: { categorie: string } = useParams()
+
   const showFilterCategories = () => {
     const initialCategorie =
       categorie !== undefined
@@ -41,8 +43,13 @@ export const ItemListContainer: FC = () => {
     showFilterCategories()
   }, [categorie])
 
+  const str = new String(categorie)
+  const title = str.charAt(0).toUpperCase() + str.slice(1)
+  const home = categorie ? title : 'Home'
+
   return (
-    <Container maxWidth="container.xl">
+    <Container marginBottom={20} maxWidth="container.xl">
+      <Head title={`${home} | Music Center`} />
       <Breadcrumbs item={categorie} />
       {product.length ? (
         <ItemList dataMap={product} />

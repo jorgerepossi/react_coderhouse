@@ -1,5 +1,12 @@
 import { IoClose } from 'react-icons/io5'
-import { Flex, Box, SimpleGrid, Text } from '@chakra-ui/react'
+import {
+  Flex,
+  Box,
+  SimpleGrid,
+  Text,
+  Image,
+  CloseButton
+} from '@chakra-ui/react'
 
 import useCountState from '../../hooks/useCountState'
 import { useData } from '../../hooks/useData'
@@ -9,7 +16,16 @@ import { ItemCount } from '../ItemCount'
 interface ItemCartProps {
   item: ProductItem
   quantity: number
-  handleChangePrice: (price: number, type: 'add' | 'subtract') => void
+  handleChangePrice: (
+    price: number,
+    type: 'add' | 'subtract',
+    id: string,
+    quantity: number
+  ) => void
+}
+
+export const handleConvertPrice = (price: number) => {
+  return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1.')
 }
 
 const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
@@ -22,30 +38,41 @@ const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
 
   const handleDecrementPrice = () => {
     if (count - 1 === 0 || count === 0) return
-    handleChangePrice(item.price, 'subtract')
+    handleChangePrice(item.price, 'subtract', item.id, count - 1)
     decrement()
   }
 
   const handleIncrementPrice = () => {
     increment()
-    handleChangePrice(item.price, 'add')
-  }
-
-  const handleConvertPrice = (price: number) => {
-    return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1.')
+    handleChangePrice(item.price, 'add', item.id, count + 1)
   }
 
   return (
-    <div>
-      <SimpleGrid columns={4}>
+    <Box
+      alignItems="center"
+      paddingBottom={6}
+      borderBottomWidth="1px"
+      paddingTop={4}
+      marginBottom={4}
+    >
+      <SimpleGrid alignItems="center" columns={[2, 2, 4]} textAlign="center">
         <Box>
-          <h1>{item.name}</h1>
+          <Flex alignItems="center">
+            <Image height="80px" src={item.image} width="80px" />
+            <Text fontSize="12" fontWeight="bold" textTransform="capitalize">
+              {item.name}
+            </Text>
+          </Flex>
         </Box>
         <Box>
-          <Text>${handleConvertPrice(item.price)}</Text>
+          <Text color="primary" fontSize="14px" textAlign="center">
+            {` $${handleConvertPrice(item.price)}`}
+          </Text>
         </Box>
-        <Box>
-          <Text> Stock: {item.stock}</Text>
+        <Box alignItems="center" display="flex" flexDirection="column">
+          <Text color="text" fontSize="14px" marginBottom="10px">
+            Stock: {item.stock}
+          </Text>
           <ItemCount
             count={count}
             decrement={handleDecrementPrice}
@@ -53,14 +80,14 @@ const ItemCart = ({ item, quantity, handleChangePrice }: ItemCartProps) => {
             maxStock={item.stock}
           />
         </Box>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Text>$ {handleConvertPrice(item.price * count)}</Text>
-          <button onClick={() => removeItem(item.id)}>
-            <IoClose />
-          </button>
-        </div>
+        <Box alignItems="center" display="flex" justifyContent="space-around">
+          <Text fontWeight="bold">
+            $ {handleConvertPrice(item.price * count)}
+          </Text>
+          <CloseButton size="sm" onClick={() => removeItem(item.id)} />
+        </Box>
       </SimpleGrid>
-    </div>
+    </Box>
   )
 }
 

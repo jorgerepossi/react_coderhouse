@@ -1,5 +1,12 @@
 import { FC } from 'react'
-import { Box, Container, Divider, SimpleGrid, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Container,
+  Divider,
+  Flex,
+  SimpleGrid,
+  Text
+} from '@chakra-ui/react'
 import { useHistory } from 'react-router-dom'
 
 import { useData } from '../../hooks/useData'
@@ -7,6 +14,8 @@ import ItemCart from '../../components/ItemCart/ItemCart'
 import CartForm from '../../components/Form/CartForm'
 import { FormData } from '../../types/types'
 import { getFirestore } from '../../api/config'
+import { EmptyCart } from '../../components'
+import Head from '../../components/common/Head/Head'
 
 interface Props {}
 
@@ -14,8 +23,13 @@ export const Cart: FC<Props> = () => {
   const { state, removeCart, handleUpdatePrice } = useData()
   const history = useHistory()
 
-  const handleChangePrice = (price: number, type: 'add' | 'subtract') => {
-    handleUpdatePrice(type, price)
+  const handleChangePrice = (
+    price: number,
+    type: 'add' | 'subtract',
+    id: string,
+    quantity: number
+  ) => {
+    handleUpdatePrice(type, price, id, quantity)
   }
 
   const totalPriceEncode = String(state.cart.total).replace(
@@ -61,32 +75,45 @@ export const Cart: FC<Props> = () => {
   }
 
   if (!state.cart.products.length) {
-    return (
-      <div>
-        <h1>Cart is empty</h1>
-      </div>
-    )
+    return <EmptyCart />
   }
 
   return (
     <Container maxWidth="container.xl">
-      <SimpleGrid columns={4} padding="20px 0">
-        <Text>Producto</Text>
-        <Text>Precio</Text>
-        <Text>Cantidad</Text>
-        <Text>Total</Text>
-      </SimpleGrid>
-      <Divider mb="20px" spacing={1} />
-      {state.cart.products.map(({ item, quantity }) => (
-        <ItemCart
-          key={item.id}
-          handleChangePrice={handleChangePrice}
-          item={item}
-          quantity={quantity}
-        />
-      ))}
-      <h2>Total price: ${totalPriceEncode}</h2>
-      <CartForm handleSubmitForm={handleSubmitForm} />
+      <Flex
+        flexDirection={['column', 'column', 'column', 'row']}
+        marginTop="20px"
+      >
+        <Head title="Cart | Music Center" />
+        <Box flex="2">
+          <SimpleGrid columns={4} padding="20px 0">
+            <Text>Product</Text>
+            <Text textAlign="center">Price</Text>
+            <Text textAlign="center">Quantity</Text>
+            <Text>Total</Text>
+          </SimpleGrid>
+          <Divider mb="20px" spacing={1} />
+          <Box>
+            {state.cart.products.map(({ item, quantity }) => (
+              <ItemCart
+                key={item.id}
+                handleChangePrice={handleChangePrice}
+                item={item}
+                quantity={quantity}
+              />
+            ))}
+          </Box>
+          <Text>
+            Order Total:
+            <span style={{ fontSize: 15, fontWeight: 'bold' }}>
+              {` $${totalPriceEncode}`}
+            </span>
+          </Text>
+        </Box>
+        <Box flex="1">
+          <CartForm handleSubmitForm={handleSubmitForm} />
+        </Box>
+      </Flex>
     </Container>
   )
 }

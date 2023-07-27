@@ -13,7 +13,12 @@ export type ProductContextProps = {
   addToCart: ({ product, quantity }: AddToCartProps) => void
   removeItem: (id: string) => void
   removeCart: () => void
-  handleUpdatePrice: (type: 'add' | 'subtract', price: number) => void
+  handleUpdatePrice: (
+    type: 'add' | 'subtract',
+    price: number,
+    id: string,
+    quantity: number
+  ) => void
 }
 
 export const ProductContext = createContext<ProductContextProps>({
